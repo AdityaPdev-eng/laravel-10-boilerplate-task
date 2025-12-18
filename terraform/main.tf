@@ -1,3 +1,13 @@
+####################
+# AWS PROVIDER
+####################
+provider "aws" {
+  region = var.aws_region
+}
+
+####################
+# VPC MODULE
+####################
 module "vpc" {
   source = "./modules/vpc"
 
@@ -5,6 +15,9 @@ module "vpc" {
   azs      = var.azs
 }
 
+####################
+# EKS MODULE
+####################
 module "eks" {
   source = "./modules/eks"
 
@@ -15,22 +28,25 @@ module "eks" {
   subnet_ids = module.vpc.private_subnets
 }
 
+####################
+# IAM MODULE
+####################
 module "iam" {
   source = "./modules/iam"
 }
 
+####################
+# EKS AUTH DATA
+####################
 data "aws_eks_cluster_auth" "this" {
   name = module.eks.cluster_name
 }
 
+####################
+# KUBERNETES PROVIDER
+####################
 provider "kubernetes" {
   host                   = module.eks.cluster_endpoint
   cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
   token                  = data.aws_eks_cluster_auth.this.token
 }
-provider "aws" {
-  region = var.aws_region
-}
-
-
-
