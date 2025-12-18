@@ -78,7 +78,7 @@ docker build -t laravel-app -f Docker/Dockerfile .
 
 ---
 
-## 🧪 Local Development (docker‑compose)
+## Local Development (docker‑compose)
 
 For local development, the application can be run using Docker Compose.
 
@@ -143,7 +143,7 @@ helm template laravel helm/laravel-app \
 
 ---
 
-## 🌍 Public Access
+## Public Access
 
 The application is exposed publicly using a Kubernetes Service of type **LoadBalancer**.
 
