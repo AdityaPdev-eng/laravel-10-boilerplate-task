@@ -1,4 +1,8 @@
 # Innoscripta DevOps–Laravel 10
+<p align="center">
+  <img src="flowdiagram.png" alt="AWS Architecture Diagram" width="900"/>
+</p>
+
 
 ## Overview
 
